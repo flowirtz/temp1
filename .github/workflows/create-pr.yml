@@ -24,9 +24,10 @@ jobs:
           echo $GITHUB_RUN_ID >> APPEND_ME.txt
       - run: |
           IFS=',' read -r -a ticketIdsArray <<< ${{ inputs.ticketIds }}
-          for element in "${ticketIdsArray[@]}"
+          IFS=',' read -r -a serviceNamesArray <<< ${{ inputs.serviceNames }}
+          for index in "${!ticketIdsArray[@]}"
           do
-              echo "$element"
+              echo "# LOLS-${ticketIdsArray[index]}\n${serviceNamesArray[index]}"
           done
       - name: Commit changes
         run: |
