@@ -27,7 +27,7 @@ jobs:
           IFS=',' read -r -a serviceNamesArray <<< ${{ inputs.serviceNames }}
           for index in "${!ticketIdsArray[@]}"
           do
-              echo "# LOLS-${ticketIdsArray[index]}\n${serviceNamesArray[index]}"
+              printf "# LOLS-${ticketIdsArray[index]}\n${serviceNamesArray[index]}"
           done
       - name: Commit changes
         run: |
@@ -37,5 +37,5 @@ jobs:
           git add APPEND_ME.txt
           git commit -m "Add stuff"
           git status
-          git push --set-upstream origin exclude-$GITHUB_RUN_ID
+          # git push --set-upstream origin exclude-$GITHUB_RUN_ID
       - run: echo "🍏 We have pushed to exclude-$GITHUB_RUN_ID."
