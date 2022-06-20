@@ -23,10 +23,15 @@ jobs:
       - run: |
           echo $GITHUB_RUN_ID >> APPEND_ME.txt
       - run: |
-          git config --global user.name 'Your Name'
-          git config --global user.email 'your-username@users.noreply.github.com'
+          IFS=', ' read -r -a ticketIdsArray <<< ${{ inputs.ticketIds }}
+          for element in "${ticketIdsArray[@]}"
+          do
+              echo "$element"
+          done
       - name: Commit changes
         run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
           git checkout -b exclude-$GITHUB_RUN_ID
           git add APPEND_ME.txt
           git commit -m "Add stuff"
