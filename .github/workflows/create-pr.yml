@@ -31,5 +31,5 @@ jobs:
           git add APPEND_ME.txt
           git commit -m "Add stuff"
           git status
-          git push
+          git git push --set-upstream origin exclude-$GITHUB_RUN_ID
       - run: echo "🍏 We have pushed to exclude-$GITHUB_RUN_ID."
