@@ -27,7 +27,7 @@ jobs:
           IFS=',' read -r -a serviceNamesArray <<< ${{ inputs.serviceNames }}
           for index in "${!ticketIdsArray[@]}"
           do
-              printf "# LOLS-${ticketIdsArray[index]}\n${serviceNamesArray[index]}"
+              printf "# LOLS-${ticketIdsArray[index]}\n${serviceNamesArray[index]}\n"
           done
       - name: Commit changes
         run: |
