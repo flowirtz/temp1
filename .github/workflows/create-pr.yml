@@ -22,7 +22,14 @@ jobs:
           ls ${{ github.workspace }}
       - run: |
           echo $GITHUB_RUN_ID >> APPEND_ME.txt
-      - run: git config --global user.name 'Your Name' && git config --global user.email 'your-username@users.noreply.github.com'
+      - run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
       - name: Commit changes
-        run: git checkout -b exclude-$GITHUB_RUN_ID && git add APPEND_ME.txt && git commit -m "Add stuff" && git status
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+        run: |
+          git checkout -b exclude-$GITHUB_RUN_ID
+          git add APPEND_ME.txt
+          git commit -m "Add stuff"
+          git status
+          git push
+      - run: echo "🍏 We have pushed to exclude-$GITHUB_RUN_ID."
